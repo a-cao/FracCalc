@@ -26,21 +26,12 @@ public class FracCalc {
      public static String produceAnswer(String input)
      { 
          // TODO: Implement this function to produce the solution to the input
-         
-         //input tests 
-         //System.out.println("Printing input: " + input);
-         //System.out.println("Length: " + input.length());
 
          
          //checkpoint 1 variables + assignment
          String fraction1 = input.substring(0, input.indexOf(" "));
          String operator = input.substring((input.indexOf(" ") + 1),(input.indexOf(" ") + 2));
          String fraction2 = input.substring(input.indexOf(" ") + 3, input.length());
-         
-         //checkpoint 1 tests
-         //System.out.println("Printing operator: " + operator);
-         //System.out.println("Printing frac 1: " + fraction1);
-         //System.out.println("Printing frac 2: " + fraction2);
          
          //checkpoint 2 variables
          int whole1 = setWhole(fraction1);
@@ -53,6 +44,7 @@ public class FracCalc {
          
          //checkpoint 3
          //checkpoint 3 variable declaration
+         //note, the code doesn't run if the ans vars aren't initialized
          int wholeAns = 0;
          int numerAns = 0;
          int denomAns = 1;
@@ -115,19 +107,14 @@ public class FracCalc {
         	 wholeAns = 1;
         	 numerAns = 0;
          }
+         //making sure denom isn't negative
          if (denomAns < 0) {
         	 denomAns *= -1;
          }
-          //System.out.println("operator: " + operator + " whole:" + wholeAns + " numerator:" + numerAns + " denominator:" + denomAns);
-          //System.out.println("whole:" + whole1 + " numerator:" + numer1 + " denominator:" + denom1);
-          //System.out.println("whole:" + whole2 + " numerator:" + numer2 + " denominator:" + denom2);
-
-          //return fraction2;
-          //return ("whole:" + whole2 + " numerator:" + numer2 + " denominator:" + denom2);
-          //return ("whole:" + wholeAns + " numerator:" + numerAns + " denominator:" + denomAns);
          	return (wholeAns + "_" + numerAns + "/" + denomAns);
      }
       // TODO: Fill in the space below with any helper methods that you think you will need
+     //finds gfc of two given ints, returns as int
      public static int gcf(int a, int b) {
     	    if (b == 0) {
     	      return a;
@@ -135,7 +122,7 @@ public class FracCalc {
     	      return (gcf(b, a % b));
     	    }
      }
-     
+     //finds lcm of two given ints, returns as int
      public static int lcm(int a, int b){
          int lcm = (a > b) ? a : b;
          for(; lcm <= (a * b) ; lcm++){
@@ -146,6 +133,7 @@ public class FracCalc {
          return lcm;
      }
      
+     //one of three functions that assigns component vals (whole, numer, denom) using an input fraction 
      public static int setWhole(String fraction) {  	 
     	 if (fraction.contains("_")) {
              return Integer.parseInt(fraction.substring(0, fraction.indexOf("_")));                         
