@@ -36,11 +36,18 @@ public class FracCalc {
          //checkpoint 2 variables
          int whole1 = setWhole(fraction1);
          int numer1 = setNumer(fraction1);
-         int denom1 = setDenom(fraction1); 
+         int denom1 = setDenom(fraction1);
 
          int whole2 = setWhole(fraction2);
          int numer2 = setNumer(fraction2);
          int denom2 = setDenom(fraction2);
+         // error handling for a denom of zero
+    	 if (denom1 == 0) {
+    		 System.out.println("ERROR: Cannot divide by zero.");
+    	 }
+    	 if (denom2 == 0) {
+    		 System.out.println("ERROR: Cannot divide by zero.");
+    	 }
          
          //checkpoint 3
          //checkpoint 3 variable declaration
@@ -81,7 +88,7 @@ public class FracCalc {
              denomAns = denom1;
              if (operator.equals("+")) {
             	 numerAns = numer1 + numer2;
-             } else {
+             } else if (operator.equals("-")) {
             	 numerAns = numer1 - numer2;
              }
          //multiplication/division
@@ -89,10 +96,13 @@ public class FracCalc {
         	 if (operator.equals("*")) {
         		 numerAns = numer1*numer2;
         		 denomAns = denom1*denom2;
-        	 } else {
+        	 } else if (operator.equals("/")){
         		 numerAns = numer1*denom2;
         		 denomAns = denom1*numer2;
         	 }
+         //error handling for invalid operator
+         } else {
+        	 System.out.println("ERROR: Input is in an invalid format. Make sure your operator is either +, -, *, or /.");
          }
          //simplifying ans
          //gcf division
@@ -154,13 +164,14 @@ public class FracCalc {
          } 	 
 	    }
      
-     public static int setDenom(String fraction) {  	 
+     public static int setDenom(String fraction) {
     	 if (fraction.contains("_")) {
              return Integer.parseInt(fraction.substring((fraction.indexOf("/") + 1), fraction.length()));            
          } else if (!(fraction.contains("/"))){
              return 1;
          } else {
              return Integer.parseInt(fraction.substring((fraction.indexOf("/") + 1), fraction.length()));
-         } 	 
+         }
+    	 
 	    }
 	 }
